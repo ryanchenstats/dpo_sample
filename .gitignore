@@ -1,0 +1,4 @@
+dpo_models/
+sft_models/
+
+*.pyc
