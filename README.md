@@ -19,3 +19,10 @@ we can run DPO to train a LLM to generate responses that are preferred over the 
 Save the data set in a csv file under `data/`
 
 Check and modify `config.py` for training parameters and locations of models and data.
+
+
+Then we can run inference with the fine-tuned model. Be sure that the DPO model paths are all correct.
+
+```
+python dpo_inference.py -i "What is the square root of 49?"
+```
