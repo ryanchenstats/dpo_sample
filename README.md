@@ -26,3 +26,27 @@ Then we can run inference with the fine-tuned model. Be sure that the DPO model 
 ```
 python dpo_inference.py -i "What is the square root of 49?"
 ```
+
+
+# Usage 
+
+1) First we need to SFT the model.
+
+```
+python -m sft
+```
+
+Be sure to use the correct model name in the `config.py` file, specifically the `SFTConfig()` dataclass 
+
+2) Then we can use DPO to train the model.
+
+```
+python -m dpo
+```
+Again be sure to use the correct model name in the `config.py` file, specifically the `MyDPOConfig()` dataclass 
+
+3) Then we can run inference with the fine-tuned model.
+
+```
+python -m dpo_inference -i "What is the square root of 49?"
+```
