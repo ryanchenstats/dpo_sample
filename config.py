@@ -15,7 +15,7 @@ class SFTConfig:
     sft_model_cache_dir:    path to cache the model so hf doesnt download it every time
     """
     
-    hf_key: str = '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'
+    hf_key: str = 'xxxxx'
     sft_model_name: str = "meta-llama/Llama-2-7b-hf"
     sft_dataset_path: str = "./data/text_completion_dataset.csv"
     sft_output_dir: str = "/home/ubuntu/huggingface/sft_models"
