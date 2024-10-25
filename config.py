@@ -68,7 +68,7 @@ class MyDPOConfig:
     sft_model_cache_dir:    path to cache the model so hf doesnt download it every time
     """
     
-    hf_key: str = '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'
+    hf_key: str = 'xxxx'
     sft_model_name: str = "meta-llama/Llama-2-7b-hf"
     dpo_dataset_path: str = "./data/text_completion_dataset.csv"
     sft_adapter_path: str = "/home/ubuntu/huggingface/sft_models"
