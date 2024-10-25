@@ -16,7 +16,7 @@ class SFTConfig:
     """
     
     hf_key: str = 'xxxxx'
-    sft_model_name: str = "meta-llama/Llama-2-7b-hf"
+    sft_model_name: str = "meta-llama/Meta-Llama-3-8B" # nvidia/Llama-3.1-Nemotron-70B-Instruct-HF
     sft_dataset_path: str = "./data/text_completion_dataset.csv"
     sft_output_dir: str = "/home/ubuntu/huggingface/sft_models"
     sft_model_cache_dir: str = "/home/ubuntu/.cache/huggingface/hub/"
@@ -69,7 +69,7 @@ class MyDPOConfig:
     """
     
     hf_key: str = 'xxxx'
-    sft_model_name: str = "meta-llama/Llama-2-7b-hf"
+    sft_model_name: str = "meta-llama/Meta-Llama-3-8B" # nvidia/Llama-3.1-Nemotron-70B-Instruct-HF
     dpo_dataset_path: str = "./data/text_completion_dataset.csv"
     sft_adapter_path: str = "/home/ubuntu/huggingface/sft_models"
     dpo_output_dir: str = "/home/ubuntu/huggingface/dpo_models"
