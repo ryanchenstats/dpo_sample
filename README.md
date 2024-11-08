@@ -50,3 +50,15 @@ Again be sure to use the correct model name in the `config.py` file, specificall
 ```
 python -m dpo_inference -i "What is the square root of 49?"
 ```
+
+# Possible Errors:
+
+You might get an error that looks like:
+
+```
+policy_output = model.generate(
+                    ^^^^^^^^^^^^^^
+AttributeError: 'generator' object has no attribute 'generate'
+```
+
+This is due to the ever evolving TRL and huggingface APIs. The solution is given here [https://github.com/huggingface/trl/issues/2292](https://github.com/huggingface/trl/issues/2292).
