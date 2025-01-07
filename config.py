@@ -1,9 +1,13 @@
 import dataclasses
+import os
 import torch
 from transformers import BitsAndBytesConfig, TrainingArguments
 from peft import LoraConfig
 from trl import DPOConfig
 
+
+os.environ["WANDB_DISABLED"] = "true"
+ 
 @dataclasses.dataclass
 class SFTConfig:
     """
@@ -15,11 +19,11 @@ class SFTConfig:
     sft_model_cache_dir:    path to cache the model so hf doesnt download it every time
     """
     
-    hf_key: str = 'xxxxx'
-    sft_model_name: str = "meta-llama/Meta-Llama-3-8B" # nvidia/Llama-3.1-Nemotron-70B-Instruct-HF
-    sft_dataset_path: str = "./data/text_completion_dataset.csv"
-    sft_output_dir: str = "/home/ubuntu/huggingface/sft_models"
-    sft_model_cache_dir: str = "/home/ubuntu/.cache/huggingface/hub/"
+    hf_key: str = os.getenv('HF_KEY')
+    sft_model_name: str = "facebook/opt-1.3b" # nvidia/Llama-3.1-Nemotron-70B-Instruct-HF
+    sft_dataset_path: str = "./data/imdb_sentiment_data.csv"
+    sft_output_dir: str = "./sft_models"
+    sft_model_cache_dir: str = "/shares/bcs516/ryan/huggingface/hub/"
     
     bnb_config = BitsAndBytesConfig(
         load_in_4bit=True,
@@ -51,7 +55,8 @@ class SFTConfig:
         optim="paged_adamw_32bit",
         lr_scheduler_type="cosine",
         warmup_ratio=0.05,
-        remove_unused_columns=False
+        remove_unused_columns=False,
+        report_to="none",
     )
     
     generate_max_length: int = 64
@@ -68,12 +73,12 @@ class MyDPOConfig:
     sft_model_cache_dir:    path to cache the model so hf doesnt download it every time
     """
     
-    hf_key: str = 'xxxx'
-    sft_model_name: str = "meta-llama/Meta-Llama-3-8B" # nvidia/Llama-3.1-Nemotron-70B-Instruct-HF
-    dpo_dataset_path: str = "./data/text_completion_dataset.csv"
-    sft_adapter_path: str = "/home/ubuntu/huggingface/sft_models"
-    dpo_output_dir: str = "/home/ubuntu/huggingface/dpo_models"
-    sft_model_cache_dir: str = "/home/ubuntu/.cache/huggingface/hub/"
+    hf_key: str = os.getenv('HF_KEY')
+    sft_model_name: str = "facebook/opt-1.3b" # nvidia/Llama-3.1-Nemotron-70B-Instruct-HF
+    dpo_dataset_path: str = "./data/imdb_sentiment_data.csv"
+    sft_adapter_path: str = "./sft_models"
+    dpo_output_dir: str = "./dpo_models"
+    sft_model_cache_dir: str = "/shares/bcs516/ryan/huggingface/hub/"
     
     train_test_split_ratio: float = 0.2
     
@@ -86,7 +91,7 @@ class MyDPOConfig:
     training_args = DPOConfig(output_dir=dpo_output_dir, 
                               per_device_train_batch_size=2,
                               per_device_eval_batch_size=2,
-                              num_train_epochs=50,
+                              num_train_epochs=10,
                               logging_steps=10,
                               learning_rate=2e-4,
                               eval_strategy="epoch",
