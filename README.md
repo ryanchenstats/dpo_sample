@@ -1,5 +1,7 @@
 # Sample Code for DPO
 
+### Warning: DPO is often used to guardrail LLMs. To demonstrate the improvement of DPO, we often show harmful and toxic prompts and provide examples of how a trained LLM can refuse or guide to a healthier response. Please be aware that there may be harmful or toxic text present in this repository.
+
 ## Direct Preference Optimization (DPO)
 
 1) SFT
