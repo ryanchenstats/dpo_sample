@@ -20,7 +20,7 @@ class SFTConfig:
     """
     
     hf_key: str = os.getenv('HF_KEY')
-    sft_model_name: str = "facebook/opt-1.3b" # nvidia/Llama-3.1-Nemotron-70B-Instruct-HF
+    sft_model_name: str = "meta-llama/Meta-Llama-3-8B" #"facebook/opt-1.3b" # nvidia/Llama-3.1-Nemotron-70B-Instruct-HF
     sft_dataset_path: str = "./data/imdb_sentiment_data.csv"
     sft_output_dir: str = "./sft_models"
     sft_model_cache_dir: str = "/shares/bcs516/ryan/huggingface/hub/"
@@ -74,7 +74,7 @@ class MyDPOConfig:
     """
     
     hf_key: str = os.getenv('HF_KEY')
-    sft_model_name: str = "facebook/opt-1.3b" # nvidia/Llama-3.1-Nemotron-70B-Instruct-HF
+    sft_model_name: str = "meta-llama/Meta-Llama-3-8B" #"facebook/opt-1.3b" # nvidia/Llama-3.1-Nemotron-70B-Instruct-HF
     dpo_dataset_path: str = "./data/imdb_sentiment_data.csv"
     sft_adapter_path: str = "./sft_models"
     dpo_output_dir: str = "./dpo_models"
