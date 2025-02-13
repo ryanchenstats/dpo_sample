@@ -20,16 +20,16 @@ class SFTConfig:
     """
     
     hf_key: str = os.getenv('HF_KEY')
-    sft_model_name: str = "meta-llama/Meta-Llama-3-8B" #"facebook/opt-1.3b" # nvidia/Llama-3.1-Nemotron-70B-Instruct-HF
+    sft_model_name: str = "facebook/opt-1.3b" #"facebook/opt-1.3b" # nvidia/Llama-3.1-Nemotron-70B-Instruct-HF
     sft_dataset_path: str = "./data/imdb_sentiment_data.csv"
     sft_output_dir: str = "./sft_models"
     sft_model_cache_dir: str = "/shares/bcs516/ryan/huggingface/hub/"
     
-    bnb_config = BitsAndBytesConfig(
-        load_in_4bit=True,
-        bnb_4bit_quant_type="nf4",
-        bnb_4bit_compute_dtype=torch.bfloat16,
-    )
+    # bnb_config = BitsAndBytesConfig(
+    #     load_in_4bit=True,
+    #     bnb_4bit_quant_type="nf4",
+    #     bnb_4bit_compute_dtype=torch.bfloat16,
+    # )
     
     peft_config = LoraConfig(
         r=32,
@@ -52,7 +52,7 @@ class SFTConfig:
         save_total_limit=3,
         logging_steps=10,
         output_dir='./sft_models',
-        optim="paged_adamw_32bit",
+        optim="adamw_torch",
         lr_scheduler_type="cosine",
         warmup_ratio=0.05,
         remove_unused_columns=False,

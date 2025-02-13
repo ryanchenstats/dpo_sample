@@ -10,7 +10,6 @@ from trl import SFTTrainer
 
 def load_model(config: SFTConfig):
     model = AutoModelForCausalLM.from_pretrained(config.sft_model_name, 
-                                                 quantization_config=config.bnb_config,
                                                  device_map="auto",
                                                  token=config.hf_key,
                                                  cache_dir=config.sft_model_cache_dir,
